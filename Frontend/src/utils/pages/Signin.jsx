@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // & RRD ==================================================================
 import { Link } from "react-router-dom";
 // ! COLOR Palette ========================================================
@@ -14,6 +14,26 @@ import Navbar from '../components/Navbar';
 
 
 export default function Signin() {
+  const [errorData, setErrorData] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+
+  function handleChangeInput(event) {
+    const { name, value } = event.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  }
+
+  async function handleFormSubmit(event) {
+    event.preventDefault();
+    console.warn(formData);
+  }
+
   return (
     <>
       <div className="signup w-full">
@@ -42,15 +62,22 @@ export default function Signin() {
             </div>
 
             {/* Simple Login ================================================== */}
-            <form action="">
+            <form onSubmit={handleFormSubmit}>
               <div className="simple-login flex flex-nowrap flex-col gap-3">
+                {/* ERROR HANDLING */}
+                {errorData !== "" &&
+                  <div className={`border-2 border-red-500 py-3 px-4 text-sm font-semibold capitalize rounded-md text-red-500 flex flex-nowrap items-center justify-between`}>
+                    <h1>{errorData}</h1>
+                    <button type='button' className='text-xl' ><IoClose /></button>
+                  </div>
+                }
                 <div className="username flex flex-nowrap items-center bg-white border-[1.4px] border-slate-300 rounded-md px-2 py-1">
                   <HiOutlineMail className='text-slate-400' />
-                  <input type="email" placeholder='Email' className='w-full py-1 px-2 focus:outline-none text-sm text-slate-500 font-medium' required />
+                  <input type="email" name='email' value={formData.email} onChange={handleChangeInput} placeholder='Email' className='w-full py-1 px-2 focus:outline-none text-sm text-slate-500 font-medium' required />
                 </div>
                 <div className="username flex flex-nowrap items-center bg-white border-[1.4px] border-slate-300 rounded-md px-2 py-1">
                   <RiLockPasswordLine className='text-slate-400' />
-                  <input type="password" placeholder='Password' className='w-full py-1 px-2 focus:outline-none text-sm text-slate-500 font-medium' required />
+                  <input type="password" name='password' value={formData.password} onChange={handleChangeInput} placeholder='Password' className='w-full py-1 px-2 focus:outline-none text-sm text-slate-500 font-medium' required />
                 </div>
                 <button type='submit' className={`${bgColorPalette.primaryColor} py-3 text-sm font-semibold capitalize rounded-md text-white`}>Continue</button>
               </div>

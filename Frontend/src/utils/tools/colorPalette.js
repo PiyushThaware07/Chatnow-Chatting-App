@@ -1,10 +1,10 @@
 const bgColorPalette = {
-    primaryColor: "bg-green-500",
+    primaryColor: "bg-yellow-400",
     secondaryColor: "bg-slate-900",
 };
 
 const textColorPalette = {
-    primaryColor: "text-green-500",
+    primaryColor: "text-yellow-400",
     secondaryColor: "text-slate-900",
 };
 
