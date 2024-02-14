@@ -1,6 +1,7 @@
 const bgColorPalette = {
     primaryColor: "bg-yellow-400",
     secondaryColor: "bg-slate-900",
+    tertiaryColor: "bg-yellow-100",
 };
 
 const textColorPalette = {
@@ -8,4 +9,9 @@ const textColorPalette = {
     secondaryColor: "text-slate-900",
 };
 
-export { bgColorPalette, textColorPalette };
+const colorGradients = {
+    first:"bg-yellow-100",
+    second:"bg-yellow-200",
+}
+
+export { bgColorPalette, textColorPalette,colorGradients };
